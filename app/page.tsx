@@ -33,10 +33,7 @@ export default function Home() {
 
   const bottomRef = useRef(null);
 
-  // Scroll to the newest message whenever the list changes
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+
 
   async function handleSend() {
     if (input.trim() === "" || isLoading) return;
