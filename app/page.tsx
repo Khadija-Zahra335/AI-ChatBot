@@ -76,7 +76,7 @@ export default function Home() {
       <div className="flex flex-col w-full max-w-3xl h-screen px-4 sm:px-6">
         {/* Header */}
         <header className="py-5 border-b border-slate-700">
-          <h1 className="text-2xl sm:text-5xl font-bold text-center">
+          <h1 className="text-2xl sm:text-3xl font-bold text-center">
             Groq Chatbot
           </h1>
           <p className="text-center text-base sm:text-xl text-slate-400 mt-1">
