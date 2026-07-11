@@ -126,7 +126,7 @@ export default function Home() {
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
             placeholder="Type a message…"
             disabled={isLoading}
-            className="flex-1 bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-base sm:text-2xl placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+            className="flex-1 bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-sm sm:text-xl placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
           />
           <button
             onClick={handleSend}
