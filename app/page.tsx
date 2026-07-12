@@ -1,27 +1,6 @@
-
-
-
-
-// That's a component — a JavaScript function that returns UI. 
-// That's the whole idea of React: your screen is built from functions that return markup.
-// //  The Home function returns what shows on the homepage.
-// The markup inside return() looks like HTML but it's JSX — HTML written inside JavaScript. Two things that trip up beginners:
-
-// You write className instead of class (because class is a reserved word in JS)
-// A component can only return one top-level element — so everything gets wrapped in a single parent <div>
-
-// This is static UI , button doesn't do anything , Now we will add usestate concept .. 
-
-// UseState: A React component is just a function that returns UI. But a function runs once and forgets everything.
-//  So how does React "remember" what you typed, or the list of messages?
-// UseState. It's React's memory. You hand React a piece of data to hold onto, and it gives you back two things:
-
-// the current value
-// a function to update it
-
-
 "use client";
 
+  
 import { useState, useRef, useEffect } from "react";
 
 export default function Home() {
@@ -33,7 +12,11 @@ export default function Home() {
 
   const bottomRef = useRef(null);
 
+<<<<<<< HEAD
+ 
+=======
 
+>>>>>>> 6bfca532425afb44e3ec4b6901bc91b05114e11a
 
   async function handleSend() {
     if (input.trim() === "" || isLoading) return;
@@ -72,8 +55,8 @@ export default function Home() {
   }
 
   return (
-    <main className="flex justify-center min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-slate-100">
-      <div className="flex flex-col w-full max-w-3xl h-screen px-4 sm:px-6">
+    <main className="flex justify-center min-h-[100dvh] bg-gradient-to-b from-slate-900 to-slate-800 text-slate-100">
+      <div className="flex flex-col w-full max-w-3xl h-[100dvh] px-4 sm:px-6">
         {/* Header */}
         <header className="py-5 border-b border-slate-700">
           <h1 className="text-2xl sm:text-3xl font-bold text-center">
@@ -118,7 +101,7 @@ export default function Home() {
         </div>
 
         {/* Input */}
-        <div className="flex gap-2 py-4 border-t border-slate-700">
+        <div className="flex gap-2 py-3 border-t border-slate-700">
           <input
             type="text"
             value={input}
@@ -136,6 +119,38 @@ export default function Home() {
             Send
           </button>
         </div>
+
+        {/* Footer */}
+        <footer className="py-3 border-t border-slate-700 text-center text-xs sm:text-sm text-slate-400">
+          <p>
+            Built by{" "}
+            <span className="text-slate-200 font-medium">Khadija Zahra</span>
+          </p>
+          <div className="flex justify-center gap-4 mt-1">
+            <a
+              href="https://github.com/Khadija-Zahra335"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400 transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/khadija-zahra-06a37a270/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400 transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:your@email.com"
+              className="hover:text-blue-400 transition-colors"
+            >
+              Email
+            </a>
+          </div>
+        </footer>
       </div>
     </main>
   );
