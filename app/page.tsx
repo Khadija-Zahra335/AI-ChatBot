@@ -22,6 +22,7 @@
 
 "use client";
 
+  
 import { useState, useRef, useEffect } from "react";
 
 export default function Home() {
@@ -33,10 +34,7 @@ export default function Home() {
 
   const bottomRef = useRef(null);
 
-  // Scroll to the newest message whenever the list changes
-  // useEffect(() => {
-  //   bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [messages]);
+ 
 
   async function handleSend() {
     if (input.trim() === "" || isLoading) return;
@@ -75,11 +73,11 @@ export default function Home() {
   }
 
   return (
-    <main className="flex justify-center min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-slate-100">
-      <div className="flex flex-col w-full max-w-3xl h-screen px-4 sm:px-6">
+    <main className="flex justify-center min-h-[100dvh] bg-gradient-to-b from-slate-900 to-slate-800 text-slate-100">
+      <div className="flex flex-col w-full max-w-3xl h-[100dvh] px-4 sm:px-6">
         {/* Header */}
         <header className="py-5 border-b border-slate-700">
-          <h1 className="text-2xl sm:text-5xl font-bold text-center">
+          <h1 className="text-2xl sm:text-3xl font-bold text-center">
             Groq Chatbot
           </h1>
           <p className="text-center text-base sm:text-xl text-slate-400 mt-1">
@@ -121,7 +119,7 @@ export default function Home() {
         </div>
 
         {/* Input */}
-        <div className="flex gap-2 py-4 border-t border-slate-700">
+        <div className="flex gap-2 py-3 border-t border-slate-700">
           <input
             type="text"
             value={input}
@@ -129,7 +127,7 @@ export default function Home() {
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
             placeholder="Type a message…"
             disabled={isLoading}
-            className="flex-1 bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-base sm:text-2xl placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+            className="flex-1 bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-sm sm:text-xl placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
           />
           <button
             onClick={handleSend}
@@ -139,6 +137,38 @@ export default function Home() {
             Send
           </button>
         </div>
+
+        {/* Footer */}
+        <footer className="py-3 border-t border-slate-700 text-center text-xs sm:text-sm text-slate-400">
+          <p>
+            Built by{" "}
+            <span className="text-slate-200 font-medium">Khadija Zahra</span>
+          </p>
+          <div className="flex justify-center gap-4 mt-1">
+            <a
+              href="https://github.com/Khadija-Zahra335"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400 transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/khadija-zahra-06a37a270/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400 transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="mailto:your@email.com"
+              className="hover:text-blue-400 transition-colors"
+            >
+              Email
+            </a>
+          </div>
+        </footer>
       </div>
     </main>
   );
