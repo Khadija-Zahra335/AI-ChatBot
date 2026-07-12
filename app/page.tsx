@@ -12,11 +12,7 @@ export default function Home() {
 
   const bottomRef = useRef(null);
 
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 6bfca532425afb44e3ec4b6901bc91b05114e11a
 
   async function handleSend() {
     if (input.trim() === "" || isLoading) return;
@@ -124,7 +120,15 @@ export default function Home() {
         <footer className="py-3 border-t border-slate-700 text-center text-xs sm:text-sm text-slate-400">
           <p>
             Built by{" "}
-            <span className="text-slate-200 font-medium">Khadija Zahra</span>
+            <span className="text-slate-200 font-medium"> 
+              <a
+               href="https://khadijazahra-portfolio.vercel.app/" 
+               target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400 transition-colors">
+              Khadija Zahra
+              </a>
+              </span>
           </p>
           <div className="flex justify-center gap-4 mt-1">
             <a
