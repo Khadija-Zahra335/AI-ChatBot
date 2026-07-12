@@ -6,7 +6,7 @@ A simple, responsive AI chatbot built with **Next.js** and the **Groq API**. Use
 
 ## Live Demo
 
-🔗 **[View Live](https://your-app.vercel.app)** <!-- replace with your Vercel URL -->
+🔗 **[View Live](https://ai-chat-bot-tau-ten.vercel.app/)
 
 ## Features
 
