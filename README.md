@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 # Groq Chatbot
 
 A simple, responsive AI chatbot built with **Next.js** and the **Groq API**. Users type a message, and the app returns a fast AI-generated reply powered by Groq's LPU inference. The Groq API key is handled entirely server-side and is never exposed to the browser.
@@ -9,7 +6,7 @@ A simple, responsive AI chatbot built with **Next.js** and the **Groq API**. Use
 
 ## Live Demo
 
-🔗 **[View Live](https://your-app.vercel.app)** <!-- replace with your Vercel URL -->
+🔗 **[View Live](https://github.com/Khadija-Zahra335/AI-ChatBot)**
 
 ## Features
 
@@ -120,7 +117,6 @@ This app is deployed on **Vercel**. To deploy your own:
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
->>>>>>> branch1
 =======
 # Groq Chatbot
 
@@ -130,7 +126,7 @@ A simple, responsive AI chatbot built with **Next.js** and the **Groq API**. Use
 
 ## Live Demo
 
-🔗 **[View Live](https://your-app.vercel.app)** <!-- replace with your Vercel URL -->
+🔗 **[View Live](https://ai-chat-bot-tau-ten.vercel.app/)** <!-- replace with your Vercel URL -->
 
 ## Features
 

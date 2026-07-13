@@ -1,8 +1,15 @@
 
+
+
+
+
+
+
+
+
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
+import { useState, useRef, useEffect } from "react";
 
 type Message = {
   role: "user" | "assistant";
@@ -11,43 +18,37 @@ type Message = {
 
 export default function Home() {
   const [input, setInput] = useState("");
-
+  const inputRef = useRef<HTMLInputElement>(null);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "👋 Hi there! How can I help you today?",
+      content: "Hi there, how can I help?",
     },
   ]);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const inputRef = useRef<HTMLInputElement>(null);
-  const messagesRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-  // Focus input on page load
+  // Auto-scroll whenever a new message is added
   useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
-  // Auto-scroll to latest message
-  useEffect(() => {
-    if (messagesRef.current) {
-      messagesRef.current.scrollTo({
-        top: messagesRef.current.scrollHeight,
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current.scrollHeight,
         behavior: "smooth",
       });
     }
   }, [messages, isLoading]);
 
   async function handleSend() {
+    if (input.trim() === "" || isLoading) return;
+
     const trimmedInput = input.trim();
 
-    if (!trimmedInput || isLoading) return;
-
-    const userMessage: Message = {
-      role: "user",
-      content: trimmedInput,
-    };
+const userMessage: Message = {
+  role: "user",
+  content: trimmedInput,
+};
 
     const updatedMessages = [...messages, userMessage];
 
@@ -85,19 +86,19 @@ export default function Home() {
         {
           role: "assistant",
           content:
-            "⚠️ I couldn't reach the AI service. Please try again in a moment.",
+            "⚠️ Sorry, something went wrong. Please try again.",
         },
       ]);
     } finally {
-      setIsLoading(false);
       inputRef.current?.focus();
+      setIsLoading(false);
     }
   }
 
   return (
-    <main className="h-screen bg-gradient-to-b from-slate-900 to-slate-800 text-slate-100 flex justify-center overflow-hidden">
-      <div className="flex flex-col h-full w-full max-w-3xl px-4 sm:px-6">
-                {/* Header */}
+    <main className="flex justify-center h-screen overflow-hidden bg-gradient-to-b from-slate-900 to-slate-800 text-slate-100">
+      <div className="flex flex-col w-full max-w-3xl h-full px-4 sm:px-6">
+        {/* Header */}
         <header className="py-5 border-b border-slate-700">
           <h1 className="text-center text-2xl sm:text-3xl font-bold tracking-tight">
             🤖 AI Chatbot
@@ -110,8 +111,8 @@ export default function Home() {
 
         {/* Messages */}
         <div
-          ref={messagesRef}
-          className="flex-1 overflow-y-auto py-6 space-y-5"
+          ref={messagesContainerRef}
+          className="flex-1 overflow-y-auto py-6 space-y-4"
         >
           {messages.map((msg, index) => (
             <div
@@ -123,7 +124,7 @@ export default function Home() {
               }`}
             >
               <div
-                className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-4 py-3 shadow-md whitespace-pre-wrap leading-relaxed text-sm sm:text-base ${
+                className={`px-4 py-3 rounded-2xl max-w-[85%] sm:max-w-[75%] text-base sm:text-xl leading-relaxed whitespace-pre-wrap ${
                   msg.role === "user"
                     ? "bg-blue-600 text-white rounded-br-sm"
                     : "bg-slate-700 text-slate-100 rounded-bl-sm"
@@ -136,63 +137,53 @@ export default function Home() {
 
           {isLoading && (
             <div className="flex justify-start">
-              <div className="bg-slate-700 rounded-2xl rounded-bl-sm px-4 py-3">
-                <div className="flex items-center gap-1">
-                  <span
-                    className="h-2 w-2 rounded-full bg-slate-300 animate-bounce"
-                  />
-                  <span
-                    className="h-2 w-2 rounded-full bg-slate-300 animate-bounce [animation-delay:150ms]"
-                  />
-                  <span
-                    className="h-2 w-2 rounded-full bg-slate-300 animate-bounce [animation-delay:300ms]"
-                  />
-                </div>
+              <div className="bg-slate-700 text-slate-400 px-4 py-3 rounded-2xl rounded-bl-sm italic">
+                Thinking...
               </div>
             </div>
           )}
         </div>
-                {/* Input */}
-        <div className="flex items-center gap-3 py-4 border-t border-slate-700">
+
+        {/* Input */}
+        <div className="flex gap-2 py-3 border-t border-slate-700">
           <input
-            ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
-              }
-            }}
-            placeholder="Type your message..."
+            onKeyDown={(e) =>
+              e.key === "Enter" && handleSend()
+            }
+            placeholder="Type a message..."
             disabled={isLoading}
-            className="flex-1 rounded-xl border border-slate-600 bg-slate-800 px-4 py-3 text-sm sm:text-base text-white placeholder-slate-500 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
+            className="flex-1 bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-sm sm:text-xl placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
           />
 
           <button
             onClick={handleSend}
             disabled={isLoading || !input.trim()}
-            className="rounded-xl bg-blue-600 px-6 py-3 font-medium text-white transition-all duration-200 hover:bg-blue-700 active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-400"
-          >
-            {isLoading ? "Sending..." : "Send"}
+            className="bg-blue-600 text-white px-5 sm:px-6 py-3 rounded-xl font-medium transition-colors hover:bg-blue-700 disabled:bg-slate-700 disabled:text-slate-400 disabled:cursor-not-allowed"
+         >
+            Send
           </button>
         </div>
-                {/* Footer */}
-        <footer className="border-t border-slate-700 py-4 text-center text-xs sm:text-sm text-slate-400">
+
+        {/* Footer */}
+        <footer className="py-3 border-t border-slate-700 text-center text-xs sm:text-sm text-slate-400">
           <p>
-            Built with ❤️ by{" "}
-            <a
-              href="https://khadijazahra-portfolio.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-slate-200 hover:text-blue-400 transition-colors"
-            >
-              Khadija Zahra
-            </a>
+            Built by{" "}
+            <span className="text-slate-200 font-medium">
+              <a
+                href="https://khadijazahra-portfolio.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-400 transition-colors"
+              >
+                Khadija Zahra
+              </a>
+            </span>
           </p>
 
-          <div className="mt-2 flex justify-center gap-6">
+          <div className="flex justify-center gap-4 mt-1">
             <a
               href="https://github.com/Khadija-Zahra335"
               target="_blank"
@@ -218,10 +209,6 @@ export default function Home() {
               Email
             </a>
           </div>
-
-          <p className="mt-3 text-[11px] text-slate-500">
-            Built with Next.js • React • Tailwind CSS • Groq API
-          </p>
         </footer>
       </div>
     </main>
