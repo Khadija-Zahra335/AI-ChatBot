@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -104,7 +95,7 @@ const userMessage: Message = {
             🤖 AI Chatbot
           </h1>
 
-          <p className="mt-1 text-center text-sm sm:text-base text-slate-400">
+          <p className="text-center text-base sm:text-xl text-slate-400 mt-1">
             Powered by Llama on Groq
           </p>
         </header>
@@ -170,7 +161,7 @@ const userMessage: Message = {
         {/* Footer */}
         <footer className="py-3 border-t border-slate-700 text-center text-xs sm:text-sm text-slate-400">
           <p>
-            Built by{" "}
+            Built with ❤️ by{"Khadija Zahra"}
             <span className="text-slate-200 font-medium">
               <a
                 href="https://khadijazahra-portfolio.vercel.app/"
@@ -203,7 +194,7 @@ const userMessage: Message = {
             </a>
 
             <a
-              href="mailto:your@email.com"
+              href="khadijazahra153@gmail.com"
               className="hover:text-blue-400 transition-colors"
             >
               Email
