@@ -161,7 +161,7 @@ const userMessage: Message = {
         {/* Footer */}
         <footer className="py-3 border-t border-slate-700 text-center text-xs sm:text-sm text-slate-400">
           <p>
-            Built with ❤️ by{"Khadija Zahra"}
+            Built with ❤️ by{""}
             <span className="text-slate-200 font-medium">
               <a
                 href="https://khadijazahra-portfolio.vercel.app/"
